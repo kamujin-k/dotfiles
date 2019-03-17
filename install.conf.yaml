@@ -1,0 +1,16 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.alias: files/.alias
+    ~/.bashrc: files/.bashrc
+    ~/.bash_profile: files/.bash_profile
+    ~/.env: files/.env
+    ~/.inputrc: files/.inputrc
+    ~/.gitconfig: files/.gitconfig
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
