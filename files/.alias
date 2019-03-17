@@ -1,0 +1,11 @@
+alias ll='ls -alFh'
+alias la='ls -Ah'
+alias l='ls -CFh'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias -- -="cd -"
+
+
+alias psg="ps aux | grep "
