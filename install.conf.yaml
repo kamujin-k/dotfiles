@@ -11,7 +11,9 @@
     ~/.env: files/.env
     ~/.inputrc: files/.inputrc
     ~/.gitconfig: files/.gitconfig
+    ~/.gitignore: files/.gitignore
     ~/.functions: files/.functions
+    ~/.prompt: files/.prompt
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

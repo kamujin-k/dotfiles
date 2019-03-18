@@ -1,5 +1,5 @@
 porta() {
-    filter = 'sport = :$1'
+    filter="sport = :$1"
 
     sudo ss -lptn $filter
 }
