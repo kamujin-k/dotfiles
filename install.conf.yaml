@@ -14,6 +14,7 @@
     ~/.gitignore: files/.gitignore
     ~/.functions: files/.functions
     ~/.prompt: files/.prompt
+    ~/git-prompt.sh: files/git-prompt.sh
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
