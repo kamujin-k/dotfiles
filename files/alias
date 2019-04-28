@@ -17,4 +17,4 @@ alias -- -="cd -"
 
 alias psg="ps aux | grep "
 
-alias reload="source ~/.bashrc"
+#alias reload="source ~/.bashrc"

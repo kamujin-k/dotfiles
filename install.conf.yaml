@@ -5,16 +5,17 @@
 - clean: ['~']
 
 - link:
-    ~/.alias: files/.alias
-    ~/.bashrc: files/.bashrc
-    ~/.bash_profile: files/.bash_profile
-    ~/.env: files/.env
-    ~/.inputrc: files/.inputrc
-    ~/.gitconfig: files/.gitconfig
-    ~/.gitignore: files/.gitignore
-    ~/.functions: files/.functions
-    ~/.prompt: files/.prompt
+    ~/.alias: files/alias
+    ~/.bashrc: files/bashrc
+    ~/.bash_profile: files/bash_profile
+    ~/.env: files/env
+    ~/.inputrc: files/inputrc
+    ~/.gitconfig: files/gitconfig
+    ~/.gitignore: files/gitignore
+    ~/.functions: files/functions
+    ~/.prompt: files/prompt
     ~/git-prompt.sh: files/git-prompt.sh
+    ~/.zshrc: files/zshrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
