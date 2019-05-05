@@ -8,7 +8,9 @@
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster"
+ZSH_THEME=powerlevel10k/powerlevel10k
+POWERLEVEL9K_MODE="nerdfont-complete"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -38,7 +40,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
+# Uncommen"agnoster"t the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -70,6 +72,8 @@ plugins=(git
          docker-compose
          gradle
          zsh-autosuggestions
+	 zsh-syntax-highlighting
+	 fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -131,3 +135,5 @@ fi
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
