@@ -9,8 +9,42 @@
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="agnoster"
-ZSH_THEME=powerlevel10k/powerlevel10k
-POWERLEVEL9K_MODE="nerdfont-complete"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+POWERLEVEL9K_MODE="nerdfont-conplete"
+DEFAULT_USER="lucas.bento"
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_first_and_last"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+
+
+# Customise the Powerlevel9k prompts
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  context
+  dir_writable
+  dir
+  vcs
+)
+
+
+
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+  status
+  root_indicator
+  background_jobs
+)
+
+
+# Transiction Icons
+#POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0C4'
+#POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$''
+
+# Folder Icons
+POWERLEVEL9K_HOME_ICON='\uf015'
+POWERLEVEL9K_HOME_SUB_ICON='\uf07b'
+POWERLEVEL9K_FOLDER_ICON='\uf07b'
+POWERLEVEL9K_ETC_ICON='\ue778'
+POWERLEVEL9K_ETC_ICON='\ue778'
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -65,7 +99,8 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-         aws
+	 github
+	 aws
          copydir
          copyfile
          docker
