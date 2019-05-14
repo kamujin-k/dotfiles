@@ -19,6 +19,7 @@
     ~/.fzf.bash: fiels/fzf.bash
     ~/.fzf.bash: files/fzf.zsh
     ~/.config/nvim/init.vim: files/init.vim
+    ~/.tmux.conf: files/tmux.conf
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
