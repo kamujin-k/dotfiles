@@ -3,3 +3,12 @@ porta() {
 
     sudo ss -lptn $filter
 }
+
+
+reload() {
+    if [[ $SHELL == *"zsh"* ]]; then
+        source ~/.zshrc
+    else
+	source ~/.bashrc
+    fi
+}

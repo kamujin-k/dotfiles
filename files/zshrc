@@ -109,6 +109,7 @@ plugins=(git
          zsh-autosuggestions
 	 zsh-syntax-highlighting
 	 fzf
+	 vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh

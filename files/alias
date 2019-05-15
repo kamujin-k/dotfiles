@@ -16,5 +16,5 @@ alias -- -="cd -"
 
 
 alias psg="ps aux | grep "
+alias https='http --default-scheme=https'
 
-#alias reload="source ~/.bashrc"
