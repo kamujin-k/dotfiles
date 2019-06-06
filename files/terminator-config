@@ -1,0 +1,26 @@
+[global_config]
+  borderless = True
+  geometry_hinting = True
+  tab_position = bottom
+  window_state = fullscreen
+[keybindings]
+  hide_window = F12
+  next_tab = <Shift>Left
+  prev_tab = <Shift>Right
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.75
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    icon_bell = False
+    scrollback_lines = 1000
