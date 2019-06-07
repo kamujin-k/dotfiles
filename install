@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Create my usual projects directory structure
 mkdir -p projects/meu
 mkdir -p projects/b2w
