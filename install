@@ -1,15 +1,26 @@
-#!/usr/bin/env bash
+# Create my usual projects directory structure
+mkdir -p projects/meu
+mkdir -p projects/b2w
 
-set -e
+# Update apt...
+sudo apt update
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
+# Basics
+sudo apt install curl\
+                 wget\
+                 httpie\
+                 neovim\
+                 git\
+                 tmux\
+                 zsh\
+                 docker.io\
+		 terminator\
+		 copyq\
+		 -y
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
-
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+# VSCode
+sudo apt install software-properties-common apt-transport-https -y
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt update
+sudo apt install code -y
