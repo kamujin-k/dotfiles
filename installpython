@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Update apt...
+sudo apt update
+
+# Install required packages
+sudo apt install -y make\
+                    build-essential\
+                    libssl-dev\
+                    zlib1g-dev\
+                    libbz2-dev \
+                    libreadline-dev\
+                    libsqlite3-dev\
+                    wget\
+                    curl\
+                    llvm\
+                    libncurses5-dev\
+                    libncursesw5-dev\
+                    xz-utils\
+                    tk-dev\
+                    libffi-dev\
+                    liblzma-dev\
+                    python-openssl\
+                    git\
+                    -y
+
+# Install PyEnv
+curl https://pyenv.run | bash
+
+
+# Set environment variables to this session
+export PATH="~/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+# Install Python 3.7.3
+pyenv install 3.7.3
+
+# Configure Python 3.7.3 globally
+pyenv global 3.7.3

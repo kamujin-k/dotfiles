@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Install NVM
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+
+# Sets environment variables to this session
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+# Install latest NodeJS
+nvm install node
+
+
+# Configure latest NodeJS
+nvm use node

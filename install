@@ -4,8 +4,10 @@
 mkdir -p projects/meu
 mkdir -p projects/b2w
 
+
 # Update apt...
 sudo apt update
+
 
 # Basics
 sudo apt install curl\
@@ -13,12 +15,50 @@ sudo apt install curl\
                  httpie\
                  neovim\
                  git\
-                 tmux\
                  zsh\
                  docker.io\
 		 terminator\
 		 copyq\
 		 -y
+
+
+# Programming languages
+if [ -e installjava ]
+then
+    ./installjava
+else
+    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installjava | bash
+fi
+
+
+if [ -e installpython ]
+then
+    ./installpython
+else
+    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installpython | bash
+fi
+
+if [ -e installnodejs ]
+then
+    ./installnodejs
+else
+    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installnodejs | bash
+fi
+
+
+if [ -e installgolang ]
+then
+    ./installgolang
+else
+    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installgolang | bash
+fi
+
+
+
+# Dotbot
+pip install dotbot
+dotbot -c dotbotcfg.yml
+
 
 # VSCode
 sudo apt install software-properties-common apt-transport-https -y
