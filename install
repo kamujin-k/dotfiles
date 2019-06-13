@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+echo "foi"
 
 # Create my usual projects directory structure
 mkdir -p projects/meu
