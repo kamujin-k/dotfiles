@@ -1,9 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-# Update apt...
-sudo apt update
+#colors...
+CYAN='\033[0;36m'
+NC='\033[0m'
+echo -e "${CYAN}======================================================================${NC}"
+echo -e "${CYAN}Installing Python stuff!!!${NC}"
+echo -e "${CYAN}======================================================================${NC}"
 
-# Install required packages
+echo -e "${CYAN}Updating apt${NC}"
+sudo apt update -y
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+echo -e "${CYAN}Installing required packages...${NC}"
 sudo apt install -y make\
                     build-essential\
                     libssl-dev\
@@ -23,19 +31,28 @@ sudo apt install -y make\
                     python-openssl\
                     git\
                     -y
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"                    
 
-# Install PyEnv
-curl https://pyenv.run | bash
+echo -e "${CYAN}Installing PyEnv...${NC}"
+rm -rf "$HOME/.pyenv"
+yes | curl https://pyenv.run | bash
 
 
 # Set environment variables to this session
 export PATH="~/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"                    
 
 
-# Install Python 3.7.3
-pyenv install 3.7.3
+echo -e "${CYAN}Installing Python...${NC}"                    
+# Install Python 3.7.3, because PyEnv doesnt have a 'latest' option
+yes | pyenv install 3.7.3                   
 
 # Configure Python 3.7.3 globally
-pyenv global 3.7.3
+yes | pyenv global 3.7.3
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"   
+
+echo -e "${CYAN}======================================================================${NC}"
+echo -e "${CYAN}Finished installing Python stuff!!!${NC}"
+echo -e "${CYAN}======================================================================${NC}"

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+
+#TODO Configure google/drive account
+#TODO Configure Dropbox
+#TODO Tame Locations sidebar on Nautilus
+
+
+
+
+# Create my usual projects directory structure
+mkdir -p projects/meu
+mkdir -p projects/b2w
+mkdir -p drive
+
+
+# Add ssh key to github (will prompt for credentials)
+./git-add-key.sh
+
+
+# Clone my dotfiles project to this machine
+git clone git@github.com:lucas-bento/dotfiles.git projects/b2w/dotfiles
+
+
+# Install Dotbot
+pip install dotbot
+dotbot -c projects/meu/dotfiles/dotbotcfg.yml
+
+
+# Install Settings Sync VSCode extension
+code --install-extension Shan.code-settings-sync

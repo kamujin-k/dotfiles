@@ -1,17 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 
-# Install NVM
+#colors...
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+echo -e "${CYAN}======================================================================${NC}"
+echo -e "${CYAN}Installing NodeJS stuff!!!${NC}"
+echo -e "${CYAN}======================================================================${NC}"
+
+
+echo -e "${CYAN}Installing NVM...${NC}"
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-
 
 # Sets environment variables to this session
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 
-# Install latest NodeJS
+echo -e "${CYAN}Installing NodeJS${NC}"
 nvm install node
-
 
 # Configure latest NodeJS
 nvm use node
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+echo -e "${CYAN}======================================================================${NC}"
+echo -e "${CYAN}Finished installing NodeJS stuff!!!${NC}"
+echo -e "${CYAN}======================================================================${NC}"

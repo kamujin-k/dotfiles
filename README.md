@@ -2,4 +2,4 @@
 My dotfiles
 
 ## Install
-`wget -q - https://git.io/fjzw6
+`wget -q -O - https://git.io/fjzw6`

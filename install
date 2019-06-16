@@ -1,17 +1,36 @@
 #!/bin/bash
 
-echo "foi"
+#TODO Install Dropbox
+#TODO Instal google Drive
 
-# Create my usual projects directory structure
-mkdir -p projects/meu
-mkdir -p projects/b2w
+#colors...
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+echo -e "${CYAN}======================================================================${NC}"
+echo -e "${CYAN}Starting a bunch of installations...${NC}"
+echo -e "${CYAN}======================================================================${NC}"
 
 
-# Update apt...
+
+echo -e "${CYAN}Adding VSCode PPA...${NC}"
+sudo apt install software-properties-common apt-transport-https -y
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
+echo -e "${CYAN}Updating apt${NC}"
 sudo apt update
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 
-# Basics
+echo -e "${CYAN}Upgrading packages${NC}"
+sudo apt upgrade -y
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
+echo -e "${CYAN}Installing packages...${NC}"
 sudo apt install curl\
                  wget\
                  httpie\
@@ -19,52 +38,45 @@ sudo apt install curl\
                  git\
                  zsh\
                  docker.io\
-		 terminator\
-		 copyq\
-		 -y
+		         terminator\
+		         copyq\
+                 code\
+		         -y
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 
 # Programming languages
-if [ -e installjava ]
-then
+if [ -e installjava ]; then
     ./installjava
 else
-    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installjava | bash
+    echo -e "${CYAN}Downloading Java instalation script${NC}"
+    wget -q -O - https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installjava | bash
 fi
 
 
-if [ -e installpython ]
-then
+if [ -e installpython ]; then
     ./installpython
 else
-    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installpython | bash
+    echo -e "${CYAN}Downloading Python instalation script${NC}"
+    wget -q -O - https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installpython | bash
 fi
 
-if [ -e installnodejs ]
-then
+
+if [ -e installnodejs ]; then
     ./installnodejs
 else
-    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installnodejs | bash
+    echo -e "${CYAN}Downloading NodeJS instalation script${NC}"
+    wget -q -O - https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installnodejs | bash
 fi
 
 
-if [ -e installgolang ]
-then
+if [ -e installgolang ]; then
     ./installgolang
 else
-    wget -q -https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installgolang | bash
+    echo -e "${CYAN}Downloading Golang instalation script${NC}"
+    wget -q -O - https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installgolang | bash
 fi
 
-
-
-# Dotbot
-pip install dotbot
-dotbot -c dotbotcfg.yml
-
-
-# VSCode
-sudo apt install software-properties-common apt-transport-https -y
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt update
-sudo apt install code -y
+echo -e "${CYAN}======================================================================${NC}"
+echo -e "${CYAN}Finished installing everything!!!${NC}"
+echo -e "${CYAN}======================================================================${NC}"

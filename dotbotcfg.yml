@@ -21,6 +21,7 @@
     ~/.config/nvim/init.vim: files/init.vim
     ~/.tmux.conf: files/tmux.conf
     ~/.config/terminator/config: files/terminator-config
+    ~/.config/gtk-3.0/bookmarks: files/bookmarks
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
