@@ -19,6 +19,9 @@ wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
+echo -e "${CYAN}Adding DBeaver PPA...${NC}"
+yes | sudo add-apt-repository ppa:serge-rider/dbeaver-ce
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 echo -e "${CYAN}Updating apt${NC}"
 sudo apt update
@@ -41,6 +44,7 @@ sudo apt install curl\
 		         terminator\
 		         copyq\
                  code\
+                 dbeaver-ce\
 		         -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
