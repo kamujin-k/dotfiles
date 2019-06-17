@@ -2,7 +2,7 @@
   borderless = True
   geometry_hinting = True
   tab_position = bottom
-  window_state = fullscreen
+  window_state = maximise
 [keybindings]
   hide_window = F12
   next_tab = <Shift>Left
