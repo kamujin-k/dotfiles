@@ -23,6 +23,12 @@ echo -e "${CYAN}Adding DBeaver PPA...${NC}"
 yes | sudo add-apt-repository ppa:serge-rider/dbeaver-ce
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
+echo -e "${CYAN}Adding Insomnia PPA...${NC}"
+echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
 echo -e "${CYAN}Updating apt${NC}"
 sudo apt update
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
@@ -45,6 +51,7 @@ sudo apt install curl\
 		         copyq\
                  code\
                  dbeaver-ce\
+                 franz\
 		         -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 

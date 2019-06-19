@@ -1,12 +1,12 @@
 [global_config]
-  borderless = True
   geometry_hinting = True
-  tab_position = bottom
-  window_state = maximise
+  window_state = fullscreen
 [keybindings]
   hide_window = F12
   next_tab = <Shift>Left
   prev_tab = <Shift>Right
+  split_horiz = <Shift><Alt>Down
+  split_vert = <Shift><Alt>Right
 [layouts]
   [[default]]
     [[[child1]]]
