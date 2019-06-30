@@ -30,8 +30,11 @@ sudo apt install -y make\
                     liblzma-dev\
                     python-openssl\
                     git\
+                    libyaml\
                     -y
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"                    
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"    
+
+rm -rf ~/.pyenv
 
 echo -e "${CYAN}Installing PyEnv...${NC}"
 rm -rf "$HOME/.pyenv"

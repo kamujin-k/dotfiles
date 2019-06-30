@@ -11,33 +11,20 @@ echo -e "${CYAN}================================================================
 echo -e "${CYAN}Starting a bunch of installations...${NC}"
 echo -e "${CYAN}======================================================================${NC}"
 
-
-
-echo -e "${CYAN}Adding VSCode PPA...${NC}"
-sudo apt install software-properties-common apt-transport-https -y
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
-
-echo -e "${CYAN}Adding DBeaver PPA...${NC}"
-yes | sudo add-apt-repository ppa:serge-rider/dbeaver-ce
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
-
-echo -e "${CYAN}Adding Insomnia PPA...${NC}"
-echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
-wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc | sudo apt-key add -
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
-
+snap install code --classic
+snap install insomnia
+snap install --edge dbeaver-ce
+sudo snap install intellij-idea-community --classic
+sudo snap install pycharm-community --classic
+snap install telegram-desktop
 
 echo -e "${CYAN}Updating apt${NC}"
 sudo apt update
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
-
 echo -e "${CYAN}Upgrading packages${NC}"
 sudo apt upgrade -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
-
 
 echo -e "${CYAN}Installing packages...${NC}"
 sudo apt install curl\
@@ -49,12 +36,14 @@ sudo apt install curl\
                  docker.io\
 		         terminator\
 		         copyq\
-                 code\
-                 dbeaver-ce\
-                 franz\
 		         -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
+
+# echo -e "${CYAN}Installing Dropbox...${NC}"
+# cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+# ~/.dropbox-dist/dropboxd
+# echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 # Programming languages
 if [ -e installjava ]; then
@@ -87,6 +76,13 @@ else
     echo -e "${CYAN}Downloading Golang instalation script${NC}"
     wget -q -O - https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installgolang | bash
 fi
+
+
+
+echo -e "${CYAN}Installing Oh My Zsh...${NC}"
+yes | sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
 
 echo -e "${CYAN}======================================================================${NC}"
 echo -e "${CYAN}Finished installing everything!!!${NC}"
