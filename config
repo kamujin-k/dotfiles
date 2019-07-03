@@ -17,7 +17,7 @@ mkdir -p ~/.config/nvim
 
 
 # Add ssh key to github (will prompt for credentials)
-# ./git-add-key.sh
+./git-add-key.sh
 
 
 # Clone my dotfiles project to this machine
