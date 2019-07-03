@@ -7,54 +7,34 @@ echo -e "${CYAN}================================================================
 echo -e "${CYAN}Installing Python stuff!!!${NC}"
 echo -e "${CYAN}======================================================================${NC}"
 
-echo -e "${CYAN}Updating apt${NC}"
-sudo apt update -y
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
-echo -e "${CYAN}Installing required packages...${NC}"
-sudo apt install -y make\
-                    build-essential\
-                    libssl-dev\
-                    zlib1g-dev\
-                    libbz2-dev \
-                    libreadline-dev\
-                    libsqlite3-dev\
-                    wget\
-                    curl\
-                    llvm\
-                    libncurses5-dev\
-                    libncursesw5-dev\
-                    xz-utils\
-                    tk-dev\
-                    libffi-dev\
-                    liblzma-dev\
-                    python-openssl\
-                    git\
-                    libyaml\
-                    -y
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"    
+if [ -e ~/.pyenv ]; then
+    echo -e "${CYAN}Updating PyEnv...${NC}"
+    pyenv update
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"                    
 
-rm -rf ~/.pyenv
-
-echo -e "${CYAN}Installing PyEnv...${NC}"
-rm -rf "$HOME/.pyenv"
-yes | curl https://pyenv.run | bash
+else
+    echo -e "${CYAN}Installing PyEnv...${NC}"
+    yes | curl https://pyenv.run | bash
 
 
-# Set environment variables to this session
-export PATH="~/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"                    
+    # Set environment variables to this session
+    export PATH="~/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"                    
 
 
-echo -e "${CYAN}Installing Python...${NC}"                    
-# Install Python 3.7.3, because PyEnv doesnt have a 'latest' option
-yes | pyenv install 3.7.3                   
+    echo -e "${CYAN}Installing Python...${NC}"                    
+    # Install Python 3.7.3, because PyEnv doesnt have a 'latest' option
+    yes | pyenv install 3.7.3                   
 
-# Configure Python 3.7.3 globally
-yes | pyenv global 3.7.3
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"   
+    # Configure Python 3.7.3 globally
+    yes | pyenv global 3.7.3
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"   
+
+fi
+
 
 echo -e "${CYAN}======================================================================${NC}"
 echo -e "${CYAN}Finished installing Python stuff!!!${NC}"

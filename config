@@ -10,28 +10,76 @@
 
 
 # Create my usual projects directory structure
-mkdir -p projects/meu
-mkdir -p projects/b2w
-mkdir -p drive
-~/.config/nvim
+mkdir -p ~/projects/meu
+mkdir -p ~/projects/b2w
+mkdir -p ~/drive
+mkdir -p ~/.config/nvim
 
 
 # Add ssh key to github (will prompt for credentials)
-#./git-add-key.sh
+# ./git-add-key.sh
 
 
 # Clone my dotfiles project to this machine
-#git clone git@github.com:lucas-bento/dotfiles.git projects/b2w/dotfiles
-
+if [ ! -e ~/projects/b2w/dotfiles ]; then
+    git clone git@github.com:lucas-bento/dotfiles.git ~/projects/b2w/dotfiles
+fi
 
 # Install Dotbot
+
+echo -e "${CYAN}Installing Dotbot...${NC}"
 pip install dotbot
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
+echo -e "${CYAN}Syncing config files...${NC}"
 dotbot -c ~/projects/meu/dotfiles/dotbotcfg.yml
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 
-# Install Settings Sync VSCode extension
+if [ ! -e ~/.oh-my-zsh ]; then
+    echo -e "${CYAN}Installing Oh My Zsh...${NC}"
+    yes | sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+fi
+
+if [ ! -e ~/.oh-my-zsh/custom/themes/powerlevel10k ]; then
+    echo -e "${CYAN}Installing Powerlevel 10k...${NC}"
+    git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+fi
+
+if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ]; then
+    echo -e "${CYAN}Installing Vim Plug...${NC}"
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+fi
+
+if [ ! -e ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
+    echo -e "${CYAN}Installing Zsh Autosuggestions...${NC}"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+fi
+
+if [ ! -e ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
+    echo -e "${CYAN}Installing Zsh Syntax Highlighting...${NC}"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+fi
+
+if [ ! -e ~/.fzf ]; then
+    echo -e "${CYAN}Installing FZF...${NC}"
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf 
+    ~/.fzf/install
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+fi
+
+
+echo -e "${CYAN}Installing VSCode Settings Sync plugin...${NC}"
 code --install-extension Shan.code-settings-sync
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
 
 # Make ZSH the default shell
-chsh -s $(which zsh)
+# chsh -s $(which zsh)
 

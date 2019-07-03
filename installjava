@@ -10,17 +10,18 @@ echo -e "${CYAN}Installing JVM stuff!!!${NC}"
 echo -e "${CYAN}======================================================================${NC}"
 
 
-#Install sdkman
-echo -e "${CYAN}Installing sdkman...${NC}"
+if [ -e ~/.sdkman ]
+    echo -e "${CYAN}Installing sdkman...${NC}"
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+else
+    echo -e "${CYAN}Updating sdkman...${NC}"
+    sdk selfupdate
+    echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+fi 
 
-curl -s "https://get.sdkman.io" | bash
 
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-#Update sdkman (in case it was already installed)
-echo -e "${CYAN}Updating sdkman...${NC}"
-sdk selfupdate
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 #Install languages and tools
 

@@ -11,32 +11,55 @@ echo -e "${CYAN}================================================================
 echo -e "${CYAN}Starting a bunch of installations...${NC}"
 echo -e "${CYAN}======================================================================${NC}"
 
-snap install code --classic
-snap install insomnia
-snap install --edge dbeaver-ce
-sudo snap install intellij-idea-community --classic
-sudo snap install pycharm-community --classic
-snap install telegram-desktop
+
+echo -e "${CYAN}Password:${NC}"
+read -s password
+
+
+
+echo $password | sudo -S snap install code --classic
+echo $password | sudo -S snap install insomnia
+echo $password | sudo -S snap install --edge dbeaver-ce
+echo $password | sudo -S snap install intellij-idea-community --classic
+echo $password | sudo -S snap install pycharm-community --classic
+echo $password | sudo -S snap install android-studio --classic
+echo $password | sudo -S snap install telegram-desktop
 
 echo -e "${CYAN}Updating apt${NC}"
-sudo apt update
+echo $password | sudo -S sudo apt update
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 echo -e "${CYAN}Upgrading packages${NC}"
-sudo apt upgrade -y
+echo $password | sudo -S sudo apt upgrade -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 echo -e "${CYAN}Installing packages...${NC}"
-sudo apt install curl\
-                 wget\
-                 httpie\
-                 neovim\
-                 git\
-                 zsh\
-                 docker.io\
-		         terminator\
-		         copyq\
-		         -y
+echo $password | sudo -S sudo apt install build-essential\
+                                          copyq\
+                                          curl\
+                                          docker.io\
+                                          git\
+                                          httpie\
+                                          libbz2-dev \
+                                          libffi-dev\
+                                          liblzma-dev\
+                                          libncurses5-dev\
+                                          libncursesw5-dev\
+                                          libreadline-dev\
+                                          libsqlite3-dev\
+                                          libssl-dev\
+                                          llvm\
+                                          make\
+                                          neovim\
+                                          python-openssl\
+                                          terminator\
+                                          tk-dev\
+                                          tree\
+                                          wget\
+                                          xz-utils\
+                                          zlib1g-dev\
+                                          zsh\
+                                          -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 
@@ -76,12 +99,6 @@ else
     echo -e "${CYAN}Downloading Golang instalation script${NC}"
     wget -q -O - https://raw.githubusercontent.com/lucas-bento/dotfiles/instalations/installgolang | bash
 fi
-
-
-
-echo -e "${CYAN}Installing Oh My Zsh...${NC}"
-yes | sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 
 echo -e "${CYAN}======================================================================${NC}"

@@ -1,5 +1,5 @@
-mv ~/.ssh/id_rsa ~/.ssh/id_rsa_bak 
-mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub_bak
+mv  ~/.ssh/id_rsa  ~/.ssh/id_rsa_bak 
+mv  ~/.ssh/id_rsa.pub  ~/.ssh/id_rsa.pub_bak
 
 ssh-keygen -t rsa
 ssh-add ~/.ssh/id_rsa
