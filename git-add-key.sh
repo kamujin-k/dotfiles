@@ -8,3 +8,6 @@ read -p "Enter github username: " githubuser
 echo "Using username $githubuser"
 read -p "Enter github password for user $githubuser: " githubpass
 curl -u "$githubuser:$githubpass" -X POST -d "{\"title\":\"`hostname`\",\"key\":\"$pub\"}" https://api.github.com/user/keys
+
+
+
