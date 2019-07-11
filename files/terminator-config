@@ -1,5 +1,8 @@
 [global_config]
   geometry_hinting = True
+  title_font = Hack 12
+  title_use_system_font = False
+  use_custom_url_handler = True
   window_state = fullscreen
 [keybindings]
   hide_window = F12
