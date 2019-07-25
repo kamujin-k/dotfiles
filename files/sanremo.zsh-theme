@@ -11,7 +11,7 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
   local return_status="%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})"
 
   # Left prompt pattern: current_directory:current_git_branch
-  PROMPT='%B%{$fg[cyan]%}%6(~:../:)%6~$(git_prompt_info) %(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%}❯)%{$reset_color%} %b'
+  PROMPT='%B%{$fg[cyan]%}%6(~:../:)%6~$(git_prompt_info) %(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%}❯❯)%{$reset_color%} %b'
 
   ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}:"
   ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
@@ -22,7 +22,8 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
   ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✘%{$reset_color%}"
 
   # Right Prompt pattern
-  RPROMPT="%1(j.%j.) ${return_status}❮ %{$fg[cyan]%}%D{%d/%m/%y-%H:%M:%S}%{$reset_color%}"
+  RPROMPT="%1(j.%j.) ${return_status}❮%{$reset_color%}"
+  # RPROMPT="%1(j.%j.) ${return_status}❮ %{$fg[cyan]%}%D{%d/%m/%y-%H:%M:%S}%{$reset_color%}"
 
 else
   MODE_INDICATOR="❮❮❮"
