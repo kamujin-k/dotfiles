@@ -10,19 +10,19 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
   # Turns the right prompt chevron red if last command returns an error
   local return_status="%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})"
 
-  # Left prompt pattern: current_directory:current_git_branch
-  PROMPT='%B%{$fg[cyan]%}%6(~:../:)%6~$(git_prompt_info) %(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%}❯❯)%{$reset_color%} %b'
-
-  ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}:"
+  # Left prompt pattern: current_directory current_git_branch
+  PROMPT='%B%{$fg[cyan]%}%6(~:../:)%6~$(git_prompt_info) ${return_status}%1(j.%j.)❯❯%{$reset_color%} %b'
+  
+  ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}⎇ "
   ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
   
-  # Shows only a red ✘ in case the git repo is dirty.
+  # Shows only a red ✘ case the git repo is dirty.
   # I dont think more information is needed at the prompt
   # If you want to know more, you could aways use 'git status'
   ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✘%{$reset_color%}"
 
   # Right Prompt pattern
-  RPROMPT="%1(j.%j.) ${return_status}❮%{$reset_color%}"
+  # RPROMPT="%1(j.%j.) ${return_status}❮%{$reset_color%}"
   # RPROMPT="%1(j.%j.) ${return_status}❮ %{$fg[cyan]%}%D{%d/%m/%y-%H:%M:%S}%{$reset_color%}"
 
 else
