@@ -5,6 +5,7 @@ call plug#begin("~/.nvim/bundle")
 
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
