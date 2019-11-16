@@ -12,3 +12,9 @@ call plug#end()
 set clipboard+=unnamedplus
 
 let g:airline_powerline_fonts = 1
+
+nnoremap d "_d
+vnoremap d "_d
+
+nnoremap y "+y
+vnoremap y "+y

@@ -12,3 +12,8 @@ reload() {
 	source ~/.bashrc
     fi
 }
+
+
+b64(){
+   echo -n $1 | base64 $2
+}
