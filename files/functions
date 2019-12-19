@@ -6,6 +6,7 @@ porta() {
 
 
 reload() {
+    tmux source-file ~/.tmux.conf
     if [[ $SHELL == *"zsh"* ]]; then
         source ~/.zshrc
     else
