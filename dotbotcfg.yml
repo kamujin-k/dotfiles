@@ -16,8 +16,8 @@
     ~/.prompt: files/prompt
     ~/git-prompt.sh: files/git-prompt.sh
     ~/.zshrc: files/zshrc
-    ~/.fzf.bash: fiels/fzf.bash
-    ~/.fzf.bash: files/fzf.zsh
+    ~/.fzf.bash: files/fzf.bash
+    ~/.fzf.zsh: files/fzf.zsh
     ~/.config/nvim/init.vim: files/init.vim
     ~/.tmux.conf: files/tmux.conf
     ~/.config/terminator/config: files/terminator-config
