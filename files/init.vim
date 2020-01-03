@@ -6,6 +6,7 @@ call plug#begin("~/.nvim/bundle")
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -30,3 +31,4 @@ vnoremap d "_d
 
 nnoremap y "+y
 vnoremap y "+y
+
