@@ -22,3 +22,4 @@ alias https='http --default-scheme=https'
 # B2W VPN
 alias vpn="sudo snx -g -u lucas.bento -s vpn.b2wdigital.com" 
 alias vpnoff="sudo snx -d"
+

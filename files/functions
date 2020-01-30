@@ -18,3 +18,9 @@ reload() {
 b64(){
    echo -n $1 | base64 $2
 }
+
+
+sdkmenu() {
+    sdk use java  $(sdk list java | grep "installed\|local only" | awk -F\| '{print $6}' | fzf)
+}
+
