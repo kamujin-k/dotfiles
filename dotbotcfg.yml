@@ -23,6 +23,7 @@
     ~/.config/terminator/config: files/terminator-config
     ~/.config/gtk-3.0/bookmarks: files/bookmarks
     ~/.oh-my-zsh/custom/themes/sanremo.zsh-theme: files/sanremo.zsh-theme
+    ~/.oh-my-zsh/custom/themes/zooper.zsh-theme: files/zooper.zsh-theme
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
