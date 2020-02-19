@@ -11,8 +11,8 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
   local return_status="%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})"
 
   # Left prompt pattern: current_directory current_git_branch
-  PROMPT='╭%B%{$fg[cyan]%}%10(~:../:)%8~$(git_prompt_info)
-╰${return_status}%1(j.%j.)❯❯%{$reset_color%} %b'
+  PROMPT='╭ %B%{$fg[cyan]%}%10(~:../:)%8~$(git_prompt_info)
+╰─${return_status}%1(j.%j.)❯❯%{$reset_color%} %b'
   
   ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}⎇ "
   ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
