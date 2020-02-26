@@ -1,0 +1,39 @@
+#!/bin/bash
+. ~/.sdkman/bin/sdkman-init.sh
+
+list="$(sdk list java)"
+
+echo "$list" | awk -F\| \
+    '$1 ~"^-*$"{
+        header=1; print
+    }
+
+    header!=1 {
+        print
+    }'
+
+sdk $( echo "$list" | awk -F\| -v OFS='|' \
+    '$1 ~ "^-*$" {
+        header=1; next
+    }  
+    
+    NF>1 && header==1 {
+		if ($1 ~ /^[ ]*$/ ) 
+			$1 = previous;
+		else 
+			previous = $1;
+
+		print
+    }' | fzf --height  40% --reverse | awk -F\| \
+	'{
+		if ($5 ~ /^[ ]*$/ ) 
+			command = "install";
+		else 
+			command = "use";
+
+
+
+		print command " java " $6
+	}')
+
+
