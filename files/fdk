@@ -1,0 +1,91 @@
+#!/bin/bash
+. ~/.sdkman/bin/sdkman-init.sh
+
+list="$(sdk list $1)"
+
+if [ "$1" == "java" ] 
+then
+
+    sdk $( 
+        echo "$list" | awk -F\| -v OFS='|' \
+        '
+        header!=1 {
+            if ($1 ~ /^-*$/) 
+                header=1
+
+            print 
+        }  
+        
+        NF>1 && header==1 {
+            if ($1 ~ /^[[:space:]]*$/ ) 
+                $1 = previous;
+            else 
+                previous = $1;
+
+            print
+        }
+        ' | fzf --height 40% --reverse --header-lines=5 | awk -F\| \
+        '{
+            if ($5 ~ /^[[:space:]]*$/ ) 
+                command = "install";
+            else 
+                command = "use";
+
+            print command " java " $6
+        }'
+    )
+else
+
+    sdk $(
+        echo "$list" | awk '
+        
+        BEGIN {
+            FS="[[:space:]][[:space:]]+"
+            current_index=0
+            separator=0
+        }
+
+        $0 ~ /^[[:space:]]*$/ {
+            next
+        }
+        
+        $0 ~ /^[=]*$/ ||  separator < 2 || separator >= 3 {
+            if ($0 ~ /^[=]*$/ ) {
+                ++separator
+                if(separator == 2 || separator == 3) {
+                    next
+                }
+            }
+
+            print gsub(/\>/, "<", $0)
+        }
+
+        separator >= 2 && separator < 3{
+            for (i=1; i<= NF; i++) {
+                if(!($i ~ "^[[:space:]]*$" || $i == "")){
+                    versions[current_index++]=$i
+                }
+            }
+        }
+
+        END {
+            asorti(versions, sorted_indexes)
+            
+            j=length(sorted_indexes)
+            
+            for(i=1; i<=j; i++) {
+                print versions[sorted_indexes[i]]
+            }
+        }' | fzf --height 40% --reverse --header-lines=6 | awk -v software="$1" \
+        '
+            NF==1 {
+                print "install " software " " $1
+            }
+
+            NF>1 {
+                print "use " software " " $NF
+            }
+        '
+    )
+fi
+
