@@ -1,13 +1,11 @@
 #!/bin/bash
 . ~/.sdkman/bin/sdkman-init.sh
 
-list="$(sdk list $1)"
 
-if [ "$1" == "java" ] 
+if [[ $# -eq 0 ]] ||  [[ "java" == $1 ]]
 then
-
     sdk $( 
-        echo "$list" | awk -F\| -v OFS='|' \
+        sdk list java | awk -F\| -v OFS='|' \
         '
         header!=1 {
             if ($1 ~ /^-*$/) 
@@ -37,7 +35,7 @@ then
 else
 
     sdk $(
-        echo "$list" | awk '
+        sdk list "$1" | awk '
         
         BEGIN {
             FS="[[:space:]][[:space:]]+"
@@ -49,6 +47,10 @@ else
             next
         }
         
+        $0 ~ /^[>]/ {
+            gsub(/[>]/, "<", $0) 
+        }
+        
         $0 ~ /^[=]*$/ ||  separator < 2 || separator >= 3 {
             if ($0 ~ /^[=]*$/ ) {
                 ++separator
@@ -57,13 +59,23 @@ else
                 }
             }
 
-            print gsub(/\>/, "<", $0)
+            print
         }
 
-        separator >= 2 && separator < 3{
+        separator >= 2 && separator < 3 {
             for (i=1; i<= NF; i++) {
                 if(!($i ~ "^[[:space:]]*$" || $i == "")){
-                    versions[current_index++]=$i
+                    len=split($i, segments, " ")                
+
+                    version=""
+                    
+                    for (j=len; j>=0; j--) {
+                        segment = segments[j]
+                        gsub(/[>]/, "<", segment) 
+                        version = version " " segment
+                    }
+
+                    versions[current_index++]=version
                 }
             }
         }
@@ -83,7 +95,7 @@ else
             }
 
             NF>1 {
-                print "use " software " " $NF
+                print "use " software " " $1
             }
         '
     )
