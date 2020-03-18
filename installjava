@@ -10,7 +10,7 @@ echo -e "${CYAN}Installing JVM stuff!!!${NC}"
 echo -e "${CYAN}======================================================================${NC}"
 
 
-if [ -e ~/.sdkman ]
+if [ ! -e ~/.sdkman ]; then
     echo -e "${CYAN}Installing sdkman...${NC}"
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"

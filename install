@@ -17,13 +17,13 @@ read -s password
 
 
 
-echo $password | sudo -S snap install code --classic
-echo $password | sudo -S snap install insomnia
-echo $password | sudo -S snap install --edge dbeaver-ce
-echo $password | sudo -S snap install intellij-idea-community --classic
-echo $password | sudo -S snap install pycharm-community --classic
-echo $password | sudo -S snap install android-studio --classic
-echo $password | sudo -S snap install telegram-desktop
+# echo $password | sudo -S snap install code --classic
+# echo $password | sudo -S snap install insomnia
+# echo $password | sudo -S snap install --edge dbeaver-ce
+# echo $password | sudo -S snap install intellij-idea-community --classic
+# echo $password | sudo -S snap install pycharm-community --classic
+# echo $password | sudo -S snap install android-studio --classic
+# echo $password | sudo -S snap install telegram-desktop
 
 echo -e "${CYAN}Updating apt${NC}"
 echo $password | sudo -S sudo apt update
@@ -35,7 +35,6 @@ echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 echo -e "${CYAN}Installing packages...${NC}"
 echo $password | sudo -S sudo apt install build-essential\
-                                          copyq\
                                           curl\
                                           docker.io\
                                           git\
@@ -52,7 +51,6 @@ echo $password | sudo -S sudo apt install build-essential\
                                           make\
                                           neovim\
                                           python-openssl\
-                                          terminator\
                                           tk-dev\
                                           tree\
                                           wget\
