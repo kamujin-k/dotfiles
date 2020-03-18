@@ -14,7 +14,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias -- -="cd -"
 alias mp="cd ~/projects/git/b2w"
-alias dot="cd ~/projects/git/meu/dot"
+alias dot="cd ~/projetos/meu/dotfiles"
 
 alias psg="ps aux | grep "
 alias https='http --default-scheme=https'
