@@ -28,8 +28,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-nnoremap d "_d
-vnoremap d "_d
+" nnoremap d "_d
+" vnoremap d "_d
 
 nnoremap y "+y
 vnoremap y "+y

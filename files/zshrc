@@ -10,6 +10,9 @@ HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="true"
 
 
+# Spring Boot Local Profile
+export spring_profiles_active=local  
+
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -50,7 +53,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 
 #################################################################
-# 'IMPORTS'
+# Personal 'imports'
 #################################################################
 
 # Alias definitions.
@@ -72,6 +75,14 @@ fi
 if [ -f ~/.localrc ]; then
     . ~/.localrc
 fi
+
+# Scripts folder
+export PATH="$HOME/scripts:$PATH"
+
+
+#################################################################
+# Tools
+#################################################################
 
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -99,11 +110,12 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-
+# Oracle Client
 export ORACLE_HOME=/usr/lib/oracle/19.3/client64
 export PATH=$PATH:$ORACLE_HOME/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
 
+# Go
 export PATH="$HOME/go/bin:$PATH"
 
 

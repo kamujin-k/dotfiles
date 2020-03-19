@@ -25,6 +25,7 @@
     ~/.oh-my-zsh/custom/themes/sanremo.zsh-theme: files/sanremo.zsh-theme
     ~/.oh-my-zsh/custom/themes/zooper.zsh-theme: files/zooper.zsh-theme
     ~/.config/kitty/kitty.conf: files/kitty.conf
+    ~/scripts: files/scripts
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
