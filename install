@@ -17,13 +17,24 @@ read -s password
 
 
 
-# echo $password | sudo -S snap install code --classic
-# echo $password | sudo -S snap install insomnia
+echo -e "${CYAN}Installing Snaps${NC}"
+echo $password | sudo -S sudo apt update
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+echo $password | sudo -S snap install code --classic
+echo $password | sudo -S snap install telegram-desktop
+echo $password | sudo -S snap install slack --classic
+echo $password | sudo -S snap install intellij-idea-ultimate --classic --edge
+echo $password | sudo -S snap install phpstorm --classic
+echo $password | sudo -S snap install pycharm-professional --classic
+echo $password | sudo -S snap install datagrip --classic
+echo $password | sudo -S snap install webstorm --classic
+
 # echo $password | sudo -S snap install --edge dbeaver-ce
+# echo $password | sudo -S snap install insomnia
 # echo $password | sudo -S snap install intellij-idea-community --classic
 # echo $password | sudo -S snap install pycharm-community --classic
 # echo $password | sudo -S snap install android-studio --classic
-# echo $password | sudo -S snap install telegram-desktop
 
 echo -e "${CYAN}Updating apt${NC}"
 echo $password | sudo -S sudo apt update
@@ -35,10 +46,6 @@ echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 echo -e "${CYAN}Installing packages...${NC}"
 echo $password | sudo -S sudo apt install build-essential\
-                                          curl\
-                                          docker.io\
-                                          git\
-                                          httpie\
                                           libbz2-dev \
                                           libffi-dev\
                                           liblzma-dev\
@@ -49,13 +56,22 @@ echo $password | sudo -S sudo apt install build-essential\
                                           libssl-dev\
                                           llvm\
                                           make\
-                                          neovim\
                                           python-openssl\
                                           tk-dev\
-                                          tree\
-                                          wget\
                                           xz-utils\
                                           zlib1g-dev\
+                                          awesome\
+                                          compton\
+                                          xscreensaver\
+                                          curl\
+                                          docker.io\
+                                          docker-compose\
+                                          git\
+                                          gitk\
+                                          httpie\
+                                          neovim\
+                                          tree\
+                                          wget\
                                           zsh\
                                           -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
