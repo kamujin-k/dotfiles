@@ -6,7 +6,6 @@ awesome
  * remover barra de titulo dos terminais
  * widget de troca de layout de janelas
 
-
  * barra de status
  ** barra de titulos com dropdown
  ** remover email
@@ -18,3 +17,12 @@ awesome
  ** widget de controle do touchpad
  ** widget de controle do bluetooth
 
+**********************************************
+
+installation
+
+ * ohmyzsh
+ * fzf
+ * zsh-autosuggestions
+ * zsh_syntax_highlighing
+ * kitty

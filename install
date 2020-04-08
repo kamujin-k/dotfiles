@@ -16,13 +16,8 @@ echo -e "${CYAN}Password:${NC}"
 read -s password
 
 
-
 echo -e "${CYAN}Installing Snaps${NC}"
-echo $password | sudo -S sudo apt update
-echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
-
 echo $password | sudo -S snap install code --classic
-echo $password | sudo -S snap install telegram-desktop
 echo $password | sudo -S snap install slack --classic
 echo $password | sudo -S snap install intellij-idea-ultimate --classic --edge
 echo $password | sudo -S snap install phpstorm --classic
@@ -35,17 +30,20 @@ echo $password | sudo -S snap install webstorm --classic
 # echo $password | sudo -S snap install intellij-idea-community --classic
 # echo $password | sudo -S snap install pycharm-community --classic
 # echo $password | sudo -S snap install android-studio --classic
+# echo $password | sudo -S snap install telegram-desktop
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
 
 echo -e "${CYAN}Updating apt${NC}"
-echo $password | sudo -S sudo apt update
+echo $password | sudo -S apt update
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 echo -e "${CYAN}Upgrading packages${NC}"
-echo $password | sudo -S sudo apt upgrade -y
+echo $password | sudo -S apt upgrade -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
 echo -e "${CYAN}Installing packages...${NC}"
-echo $password | sudo -S sudo apt install build-essential\
+echo $password | sudo -S apt install build-essential\
                                           libbz2-dev \
                                           libffi-dev\
                                           liblzma-dev\
@@ -69,10 +67,13 @@ echo $password | sudo -S sudo apt install build-essential\
                                           git\
                                           gitk\
                                           httpie\
+					  meld\
                                           neovim\
+					  alacarte\
                                           tree\
                                           wget\
                                           zsh\
+					  telegram-desktop\
                                           -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
@@ -82,7 +83,41 @@ echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # ~/.dropbox-dist/dropboxd
 # echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
+
+echo -e "${CYAN}Intalling Kitty!${NC}"
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+if [ "$TERM" != "xterm-kitty" ]; then
+   echo $password | sudo -S update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /home/lucas.bento/.local/kitty.app/bin 50
+fi
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
+echo -e "${CYAN}Intalling FZF!${NC}"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+if ! hash fzf 2>/dev/null; then
+   ~/.fzf/install
+fi
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
+echo -e "${CYAN}Intalling Oh My Zsh!${NC}"
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
+
+
+
+
+############################################################################################
 # Programming languages
+############################################################################################
 if [ -e installjava ]; then
     ./installjava
 else
