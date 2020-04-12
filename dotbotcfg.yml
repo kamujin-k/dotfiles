@@ -28,6 +28,8 @@
     ~/.config/ranger/rc.conf: files/rc.conf
     ~/.config/ranger/scope.sh: files/scope.sh
     ~/scripts: files/scripts
+    ~/.config/awesome: files/awesome
+    ~/.config/compton: files/compton
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
