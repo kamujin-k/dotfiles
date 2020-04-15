@@ -455,31 +455,31 @@ globalkeys = my_table.join(
               {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
+    awful.key({ }, "XF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
-    awful.key({ altkey }, "Down",
+    awful.key({ }, "XF86AudioLowerVolume",
         function ()
             os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
-    awful.key({ altkey }, "m",
+    awful.key({ }, "XF86AudioMute",
         function ()
             os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
-    awful.key({ altkey, "Control" }, "m",
+    awful.key({ "Control" }, "mXF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume 100%", group = "hotkeys"}),
-    awful.key({ altkey, "Control" }, "0",
+    awful.key({ "Control" }, "XF86AudioLowerVolume",
         function ()
             os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
             beautiful.volume.update()
@@ -487,25 +487,25 @@ globalkeys = my_table.join(
         {description = "volume 0%", group = "hotkeys"}),
 
     -- MPD control
-    awful.key({ altkey, "Control" }, "Up",
+    awful.key({ }, "XF86AudioPlay",
         function ()
             os.execute("mpc toggle")
             beautiful.mpd.update()
         end,
         {description = "mpc toggle", group = "widgets"}),
-    awful.key({ altkey, "Control" }, "Down",
+    awful.key({ }, "XF86AudioStop",
         function ()
             os.execute("mpc stop")
             beautiful.mpd.update()
         end,
         {description = "mpc stop", group = "widgets"}),
-    awful.key({ altkey, "Control" }, "Left",
+    awful.key({ }, "XF86AudioPrev",
         function ()
             os.execute("mpc prev")
             beautiful.mpd.update()
         end,
         {description = "mpc prev", group = "widgets"}),
-    awful.key({ altkey, "Control" }, "Right",
+    awful.key({ }, "XF86AudioNext",
         function ()
             os.execute("mpc next")
             beautiful.mpd.update()
@@ -883,8 +883,8 @@ awful.keygrabber {
     export_keybindings = true,
     start_callback = function() layout_popup.visible = true  end,
     stop_callback  = function() layout_popup.visible = false end,
-    stop_key = {'Escape', 'Super_L', 'Super_R'},
-    release_event = 'release',
+    stop_key = { 'Escape', 'Super_L', 'Super_R'},
+    stop_event = 'release',
     timeout = 10,
     keybindings = {
         {{ modkey          } , ' ' , function()

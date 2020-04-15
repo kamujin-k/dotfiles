@@ -1,28 +1,17 @@
 awesome
 
- * multiplos monitores
  
  * identificar layout do teclado na inicializacao
- * remover barra de titulo dos terminais
- * widget de troca de layout de janelas
 
  * barra de status
- ** barra de titulos com dropdown
  ** remover email
  ** clima
  ** agenda interativa
  ** google calendar
- ** widget de controle de volume
  ** widget de controle de brilho da tela
  ** widget de controle do touchpad
  ** widget de controle do bluetooth
 
 **********************************************
 
-installation
 
- * ohmyzsh
- * fzf
- * zsh-autosuggestions
- * zsh_syntax_highlighing
- * kitty

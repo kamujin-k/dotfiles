@@ -9,3 +9,6 @@ xscreensaver -no-splash &
 
 # Compositor (only for transparency)
 compton
+
+# clipboard manager
+copyq &

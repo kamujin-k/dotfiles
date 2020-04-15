@@ -16,23 +16,9 @@ echo -e "${CYAN}Password:${NC}"
 read -s password
 
 
-echo -e "${CYAN}Installing Snaps${NC}"
-echo $password | sudo -S snap install code --classic
-echo $password | sudo -S snap install slack --classic
-echo $password | sudo -S snap install intellij-idea-ultimate --classic --edge
-echo $password | sudo -S snap install phpstorm --classic
-echo $password | sudo -S snap install pycharm-professional --classic
-echo $password | sudo -S snap install datagrip --classic
-echo $password | sudo -S snap install webstorm --classic
-
-# echo $password | sudo -S snap install --edge dbeaver-ce
-# echo $password | sudo -S snap install insomnia
-# echo $password | sudo -S snap install intellij-idea-community --classic
-# echo $password | sudo -S snap install pycharm-community --classic
-# echo $password | sudo -S snap install android-studio --classic
-# echo $password | sudo -S snap install telegram-desktop
+echo -e "${CYAN}Adding PPA repositories${NC}"
+echo $password | sudo -S add-apt-repository  ppa:klaus-vormweg/awesome -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
-
 
 echo -e "${CYAN}Updating apt${NC}"
 echo $password | sudo -S apt update
@@ -67,15 +53,35 @@ echo $password | sudo -S apt install build-essential\
                                           git\
                                           gitk\
                                           httpie\
-					  meld\
+		                     			  meld\
                                           neovim\
-					  alacarte\
+					                      alacarte\
                                           tree\
                                           wget\
                                           zsh\
-					  telegram-desktop\
+					                      telegram-desktop\
+                                          copyq\
                                           -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
+
+echo -e "${CYAN}Installing Snaps${NC}"
+echo $password | sudo -S snap install code --classic
+echo $password | sudo -S snap install slack --classic
+echo $password | sudo -S snap install intellij-idea-ultimate --classic --edge
+echo $password | sudo -S snap install phpstorm --classic
+echo $password | sudo -S snap install pycharm-professional --classic
+echo $password | sudo -S snap install datagrip --classic
+echo $password | sudo -S snap install webstorm --classic
+
+# echo $password | sudo -S snap install --edge dbeaver-ce
+# echo $password | sudo -S snap install insomnia
+# echo $password | sudo -S snap install intellij-idea-community --classic
+# echo $password | sudo -S snap install pycharm-community --classic
+# echo $password | sudo -S snap install android-studio --classic
+# echo $password | sudo -S snap install telegram-desktop
+echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
+
 
 
 # echo -e "${CYAN}Installing Dropbox...${NC}"

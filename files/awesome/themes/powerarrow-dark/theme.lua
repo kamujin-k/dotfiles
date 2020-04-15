@@ -89,6 +89,7 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
+theme.systray_icon_spacing                      = 10 	
 
 local markup = lain.util.markup
 local separators = lain.util.separators
@@ -101,6 +102,16 @@ local clock = awful.widget.watch(
         widget:set_markup(" " .. markup.font(theme.font, stdout))
     end
 )
+
+
+-- Weather
+theme.weather = lain.widget.weather({
+    city_id = 2643743, -- placeholder (London)
+    settings = function()
+        units = math.floor(weather_now["main"]["temp"])
+        widget:set_markup(" " .. units .. " ")
+    end
+})
 
 -- Calendar
 theme.cal = lain.widget.cal({
@@ -259,9 +270,9 @@ local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
     settings = function()
         widget:set_markup(markup.font(theme.font,
-                          markup("#7AC82E", " " .. string.format("%06.1f", net_now.received))
+                          markup("#7AC82E", " " .. string.format("%01.1f", net_now.received))
                           .. " " ..
-                          markup("#46A8C3", " " .. string.format("%06.1f", net_now.sent) .. " ")))
+                          markup("#46A8C3", " " .. string.format("%01.1f", net_now.sent) .. " ")))
     end
 })
 
@@ -269,6 +280,14 @@ local net = lain.widget.net({
 local spr     = wibox.widget.textbox(' ')
 local arrl_dl = separators.arrow_left(theme.bg_focus, "alpha")
 local arrl_ld = separators.arrow_left("alpha", theme.bg_focus)
+
+local function light(w)
+    return wibox.container.background(w, theme.bg_focus)
+end
+
+local function dark(w)
+    return w
+end
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -305,11 +324,6 @@ function theme.at_screen_connect(s)
     mykeyboardlayout = awful.widget.keyboardlayout()
     
 
-
-
-
-
-
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
 
@@ -324,47 +338,65 @@ function theme.at_screen_connect(s)
             spr,
         },
         {
-        layout = wibox.layout.align.horizontal,
-        s.mytasklist, -- Middle widget
+            layout = wibox.layout.align.horizontal,
+            s.mytasklist, -- Middle widget
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
-            spr,
-            arrl_dl,
-            mykeyboardlayout,
-            arrl_ld,
-            wibox.container.background(mpdicon, theme.bg_focus),
-            wibox.container.background(theme.mpd.widget, theme.bg_focus),
-            arrl_dl,
-            volicon,
-            theme.volume.widget,
-            arrl_ld,
-            wibox.container.background(mailicon, theme.bg_focus),
-            --wibox.container.background(theme.mail.widget, theme.bg_focus),
-            arrl_dl,
-            memicon,
-            mem.widget,
-            arrl_ld,
-            wibox.container.background(cpuicon, theme.bg_focus),
-            wibox.container.background(cpu.widget, theme.bg_focus),
-            arrl_dl,
-            tempicon,
-            temp.widget,
-            arrl_ld,
-            wibox.container.background(fsicon, theme.bg_focus),
-            --wibox.container.background(theme.fs.widget, theme.bg_focus),
-            arrl_dl,
-            baticon,
-            bat.widget,
-            arrl_ld,
-            wibox.container.background(neticon, theme.bg_focus),
-            wibox.container.background(net.widget, theme.bg_focus),
-            arrl_dl,
-            clock,
+            
+            --arrl_dl,
+            dark(wibox.widget.systray()),
+
             spr,
             arrl_ld,
-            wibox.container.background(s.mylayoutbox, theme.bg_focus),
+            light(mykeyboardlayout),
+
+            arrl_dl,
+            dark(mpdicon),
+            dark(theme.mpd.widget),
+
+            arrl_ld,
+            light(volicon),
+            light(theme.volume.widget),
+
+            arrl_dl,
+            dark(mailicon),
+            --dark(theme.mail.widget),
+
+            arrl_ld,
+            light(memicon),
+            light(mem.widget),
+
+            arrl_dl,
+            dark(cpuicon),
+            dark(cpu.widget),
+
+            arrl_ld,
+            light(tempicon),
+            light(temp.widget),
+
+            arrl_dl,
+            dark(fsicon),
+            -- dark(theme.fs.widget),
+
+            arrl_ld,
+            light(baticon),
+            light(bat.widget),
+
+            arrl_dl,
+            dark(neticon),
+            dark(net.widget),
+
+            arrl_ld,
+            light(theme.weather.icon),
+            light(theme.weather.widget),
+
+            arrl_dl,
+            dark(clock),
+
+            spr,
+            arrl_ld,
+            light(s.mylayoutbox),
         },
     }
 end
