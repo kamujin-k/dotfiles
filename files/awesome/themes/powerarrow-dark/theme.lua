@@ -26,7 +26,6 @@ theme.bg_focus                                  = "#313131"
 theme.bg_urgent                                 = "#1A1A1A"
 theme.border_width                              = dpi(2)
 theme.border_normal                             = "#3F3F3F"
--- theme.border_focus                              = "#7F7F7F"
 theme.border_focus                              = "#19CB00"
 theme.border_marked                             = "#CC9393"
 theme.tasklist_bg_focus                         = "#1A1A1A"
@@ -89,7 +88,7 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
-theme.systray_icon_spacing                      = 10 	
+theme.systray_icon_spacing                      = 10
 
 local markup = lain.util.markup
 local separators = lain.util.separators
@@ -124,8 +123,8 @@ theme.cal = lain.widget.cal({
 })
 
 -- Mail IMAP check
-local mailicon = wibox.widget.imagebox(theme.widget_mail)
 --[[ commented because it needs to be set before use
+local mailicon = wibox.widget.imagebox(theme.widget_mail)
 mailicon:buttons(my_table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
 theme.mail = lain.widget.imap({
     timeout  = 180,
@@ -205,8 +204,8 @@ local temp = lain.widget.temp({
 })
 
 -- / fs
-local fsicon = wibox.widget.imagebox(theme.widget_hdd)
 --[[ commented because it needs Gio/Glib >= 2.54
+local fsicon = wibox.widget.imagebox(theme.widget_hdd)
 theme.fs = lain.widget.fs({
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Terminus 10" },
     settings = function()
@@ -344,39 +343,36 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             
-            --arrl_dl,
             dark(wibox.widget.systray()),
 
             spr,
             arrl_ld,
             light(mykeyboardlayout),
-
+            
             arrl_dl,
             dark(mpdicon),
             dark(theme.mpd.widget),
-
+            
             arrl_ld,
             light(volicon),
             light(theme.volume.widget),
 
-            arrl_dl,
-            dark(mailicon),
+            --dark(mailicon),
             --dark(theme.mail.widget),
 
-            arrl_ld,
-            light(memicon),
-            light(mem.widget),
-
             arrl_dl,
-            dark(cpuicon),
-            dark(cpu.widget),
+            dark(memicon),
+            dark(mem.widget),
 
             arrl_ld,
-            light(tempicon),
-            light(temp.widget),
+            light(cpuicon),
+            light(cpu.widget),
 
             arrl_dl,
-            dark(fsicon),
+            dark(tempicon),
+            dark(temp.widget),
+
+            -- dark(fsicon),
             -- dark(theme.fs.widget),
 
             arrl_ld,

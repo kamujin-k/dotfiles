@@ -473,7 +473,7 @@ globalkeys = my_table.join(
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
-    awful.key({ "Control" }, "mXF86AudioRaiseVolume",
+    awful.key({ "Control" }, "XF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
             beautiful.volume.update()
@@ -557,7 +557,7 @@ globalkeys = my_table.join(
 
 
     -- dmenu
-    awful.key({ modkey, "Shift" }, "Return", function ()
+    awful.key({  modkey , "Shift"}, "Return", function ()
             os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
             beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
         end,
@@ -598,7 +598,7 @@ clientkeys = my_table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ "Mod1"   }, "F4",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -880,17 +880,22 @@ end
 -- Make sure you remove the default Mod4+Space and Mod4+Shift+Space
 -- keybindings before adding this.
 awful.keygrabber {
-    export_keybindings = true,
+    --export_keybindings = true,
     start_callback = function() layout_popup.visible = true  end,
     stop_callback  = function() layout_popup.visible = false end,
     stop_key = { 'Escape', 'Super_L', 'Super_R'},
     stop_event = 'release',
     timeout = 10,
+    root_keybindings = {
+        {{modkey}, ' ',function() 
+            layout_popup.visible = true
+        end}
+    },
     keybindings = {
-        {{ modkey          } , ' ' , function()
+        {{modkey}, ' ' , function()
             awful.layout.set(gears.table.iterate_value(ll.layouts, ll.current_layout, 1), nil)
         end},
-        {{ modkey, 'Shift' } , ' ' , function()
+        {{modkey,  'Shift' } , ' ' , function()
             awful.layout.set(gears.table.iterate_value(ll.layouts, ll.current_layout, -1), nil)
         end},
     }
