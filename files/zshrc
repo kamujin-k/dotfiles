@@ -7,12 +7,18 @@ ZSH_THEME="zooper"
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 
 # Spring Boot Local Profile
 export spring_profiles_active=local  
 
+# Accept autosuggestion
+bindkey '^ ' autosuggest-accept
+
+precmd() { 
+    echo $PWD > /tmp/current_dir
+}
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*

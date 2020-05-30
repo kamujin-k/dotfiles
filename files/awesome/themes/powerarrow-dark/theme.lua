@@ -15,18 +15,21 @@ local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
+awesome_dir                                       = os.getenv("HOME") .. "/.config/awesome"
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper                                 = theme.dir .. "/wall2.jpg"
-theme.font                                      = "Terminus 9"
+theme.font                                      = "Terminus 11"
 theme.fg_normal                                 = "#DDDDFF"
 theme.fg_focus                                  = "#EA6F81"
 theme.fg_urgent                                 = "#CC9393"
 theme.bg_normal                                 = "#1A1A1A"
-theme.bg_focus                                  = "#313131"
+-- theme.bg_focus                                  = "#313131"
+theme.bg_focus                                  = "#595959"
 theme.bg_urgent                                 = "#1A1A1A"
-theme.border_width                              = dpi(2)
+theme.border_width                              = 3
 theme.border_normal                             = "#3F3F3F"
-theme.border_focus                              = "#19CB00"
+-- theme.border_focus                              = "#19CB00"
+theme.border_focus                              = "#0400FF"
 theme.border_marked                             = "#CC9393"
 theme.tasklist_bg_focus                         = "#1A1A1A"
 theme.titlebar_bg_focus                         = theme.bg_focus
@@ -37,18 +40,34 @@ theme.menu_width                                = dpi(140)
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
-theme.layout_tile                               = theme.dir .. "/icons/tile.png"
-theme.layout_tileleft                           = theme.dir .. "/icons/tileleft.png"
-theme.layout_tilebottom                         = theme.dir .. "/icons/tilebottom.png"
-theme.layout_tiletop                            = theme.dir .. "/icons/tiletop.png"
-theme.layout_fairv                              = theme.dir .. "/icons/fairv.png"
-theme.layout_fairh                              = theme.dir .. "/icons/fairh.png"
-theme.layout_spiral                             = theme.dir .. "/icons/spiral.png"
-theme.layout_dwindle                            = theme.dir .. "/icons/dwindle.png"
-theme.layout_max                                = theme.dir .. "/icons/max.png"
-theme.layout_fullscreen                         = theme.dir .. "/icons/fullscreen.png"
-theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
-theme.layout_floating                           = theme.dir .. "/icons/floating.png"
+
+theme.layout_tile                               = theme.dir .. "/layouticons/tile.png"
+theme.layout_tileleft                           = theme.dir .. "/layouticons/tileleft.png"
+theme.layout_tilebottom                         = theme.dir .. "/layouticons/tilebottom.png"
+theme.layout_tiletop                            = theme.dir .. "/layouticons/tiletop.png"
+theme.layout_fairv                              = theme.dir .. "/layouticons/fairv.png"
+theme.layout_fairh                              = theme.dir .. "/layouticons/fairh.png"
+theme.layout_spiral                             = theme.dir .. "/layouticons/spiral.png"
+theme.layout_dwindle                            = theme.dir .. "/layouticons/dwindle.png"
+theme.layout_max                                = theme.dir .. "/layouticons/max.png"
+theme.layout_fullscreen                         = theme.dir .. "/layouticons/fullscreen.png"
+theme.layout_magnifier                          = theme.dir .. "/layouticons/magnifier.png"
+theme.layout_floating                           = theme.dir .. "/layouticons/floating.png"
+
+theme.layout_cascade                            = theme.dir .. "/layouticons/cascade.png"
+theme.layout_cascadetile                        = theme.dir .. "/layouticons/tile.png"
+theme.layout_centerwork                         = theme.dir .. "/layouticons/centerwork.png"
+theme.layout_centerworkh                        = theme.dir .. "/layouticons/centerhwork.png"
+theme.layout_termfair                           = theme.dir .. "/layouticons/termfair.png"
+theme.layout_centerfair                         = theme.dir .. "/layouticons/centerfair.png"
+
+theme.layout_cornernw                           = theme.dir .. "/layouticons/cornernw.png"
+theme.layout_cornerne                           = theme.dir .. "/layouticons/cornerne.png"
+theme.layout_cornersw                           = theme.dir .. "/layouticons/cornersw.png"
+theme.layout_cornerse                           = theme.dir .. "/layouticons/cornerse.png"
+theme.layout_treetile                           = awesome_dir ..  "/treetile/layout_icon.png"
+
+
 theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
 theme.widget_battery                            = theme.dir .. "/icons/battery.png"
 theme.widget_battery_low                        = theme.dir .. "/icons/battery_low.png"
@@ -66,10 +85,8 @@ theme.widget_vol_no                             = theme.dir .. "/icons/vol_no.pn
 theme.widget_vol_mute                           = theme.dir .. "/icons/vol_mute.png"
 theme.widget_mail                               = theme.dir .. "/icons/mail.png"
 theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
--- theme.tasklist_plain_task_name                  = true
--- theme.tasklist_disable_icon                     = true
 theme.tasklist_disable_task_name                =  true
-theme.useless_gap                               = dpi(4)
+theme.useless_gap                               = 4
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -105,7 +122,7 @@ local clock = awful.widget.watch(
 
 -- Weather
 theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
+    city_id = 3451190, -- Rio de Janeiro
     settings = function()
         units = math.floor(weather_now["main"]["temp"])
         widget:set_markup(" " .. units .. " ")
@@ -116,32 +133,11 @@ theme.weather = lain.widget.weather({
 theme.cal = lain.widget.cal({
     attach_to = { clock },
     notification_preset = {
-        font = "Terminus 10",
+        font = "Monospace 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
 })
-
--- Mail IMAP check
---[[ commented because it needs to be set before use
-local mailicon = wibox.widget.imagebox(theme.widget_mail)
-mailicon:buttons(my_table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
-theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            widget:set_markup(markup.font(theme.font, " " .. mailcount .. " "))
-            mailicon:set_image(theme.widget_mail_on)
-        else
-            widget:set_text("")
-            mailicon:set_image(theme.widget_mail)
-        end
-    end
-})
---]]
 
 -- MPD
 local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
@@ -191,7 +187,7 @@ local mem = lain.widget.mem({
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
+        widget:set_markup(markup.font(theme.font, " " .. string.format("%03d", cpu_now.usage) .. "% "))
     end
 })
 
@@ -228,7 +224,7 @@ local bat = lain.widget.bat({
             else
                 baticon:set_image(theme.widget_battery)
             end
-            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
+            widget:set_markup(markup.font(theme.font, " " .. string.format("%03d", bat_now.perc) .. "% "))
         else
             widget:set_markup(markup.font(theme.font, " AC "))
             baticon:set_image(theme.widget_ac)
@@ -250,7 +246,7 @@ theme.volume = lain.widget.alsa({
             volicon:set_image(theme.widget_vol)
         end
 
-        widget:set_markup(markup.font(theme.font, " " .. volume_now.level .. "% "))
+        widget:set_markup(markup.font(theme.font, " " .. string.format("%03d", volume_now.level) .. "%"))
     end
 })
 theme.volume.widget:buttons(awful.util.table.join(
@@ -276,9 +272,10 @@ local net = lain.widget.net({
 })
 
 -- Separators
-local spr     = wibox.widget.textbox(' ')
-local arrl_dl = separators.arrow_left(theme.bg_focus, "alpha")
-local arrl_ld = separators.arrow_left("alpha", theme.bg_focus)
+local spr       = wibox.widget.textbox(' ')
+local separator = {arrl_ld, arrl_dl}
+local arrl_dl   = separators.arrow_left(theme.bg_focus, "alpha")
+local arrl_ld   = separators.arrow_left("alpha", theme.bg_focus)
 
 local function light(w)
     return wibox.container.background(w, theme.bg_focus)
@@ -287,6 +284,49 @@ end
 local function dark(w)
     return w
 end
+
+
+-- Get the list of files from a directory. Must be all images or folders and non-empty. 
+function scanDir(directory)
+    local i, fileList, popen = 0, {}, io.popen
+    for filename in popen([[find "]] ..directory.. [[" -type f]]):lines() do
+        i = i + 1
+        fileList[i] = filename
+    end
+    return fileList
+end
+
+theme.wallpaper = function(s)
+
+    wallpaperDir = os.getenv("HOME") .. "/Imagens/wallpapers"
+    wallpaperList = scanDir(wallpaperDir)
+
+    -- Apply a random wallpaper on startup.
+    gears.wallpaper.maximized(wallpaperList[math.random(1, #wallpaperList)], s, true)
+
+    -- Apply a random wallpaper every changeTime seconds.
+    changeTime = 1800
+    wallpaperTimer = timer { timeout = changeTime }
+    wallpaperTimer:connect_signal("timeout", function()
+
+    for s in screen do 
+        gears.wallpaper.maximized(wallpaperList[math.random(1, #wallpaperList)], s, true)
+    end
+
+    -- stop the timer (we don't need multiple instances running at the same time)
+        wallpaperTimer:stop()
+
+    --restart the timer
+        wallpaperTimer.timeout = changeTime
+        wallpaperTimer:start()
+    end)
+
+    -- initial start when rc.lua is first run
+    wallpaperTimer:start()
+end
+
+
+
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -297,10 +337,12 @@ function theme.at_screen_connect(s)
     if type(wallpaper) == "function" then
         wallpaper = wallpaper(s)
     end
-    gears.wallpaper.maximized(wallpaper, s, true)
+
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.layout.layouts[9])
+    local l = awful.layout.suit  -- Just to save some typing: use an alias.
+    local layouts = { l.tile.right }
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -308,13 +350,76 @@ function theme.at_screen_connect(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(my_table.join(
-                           awful.button({}, 1, function () awful.layout.inc( 1) end),
-                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
-                           awful.button({}, 3, function () awful.layout.inc(-1) end),
-                           awful.button({}, 4, function () awful.layout.inc( 1) end),
-                           awful.button({}, 5, function () awful.layout.inc(-1) end)))
+                           awful.button({}, 1, function () awful.layout.inc( 1 ) end),
+                           awful.button({}, 2, function () awful.layout.inc( 1 ) end),
+                           awful.button({}, 3, function () awful.layout.inc( 1 ) end),
+                           awful.button({}, 4, function () awful.layout.inc( 1 ) end),
+                           awful.button({}, 5, function () awful.layout.inc( 1 ) end),
+                           awful.button({}, 5, function () awful.layout.inc( 1 ) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+    -- s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+
+
+
+
+    s.mytaglist = awful.widget.taglist {
+        screen  = s,
+        filter  = awful.widget.taglist.filter.all,
+        style   = {
+            -- shape = gears.shape.powerline
+            bg_focus = theme.bg_focus,
+            bg_urgent = theme.bg_urgent,
+        },
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            {
+                                id     = 'index_role',
+                                widget = wibox.widget.textbox,
+                            },
+                            margins = 0,
+                            widget  = wibox.container.margin,
+                        },
+                        bg     = theme.bg_urgent,
+                        shape  = gears.shape.circle,
+                        widget = wibox.container.background,
+                    },
+
+                    {
+                        {
+                            id     = 'icon_role',
+                            widget = wibox.widget.imagebox,
+                        },
+                        margins = 2,
+                        widget  = wibox.container.margin,
+                    },
+
+                    {
+                        id     = 'text_role',
+                        widget = wibox.widget.textbox,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = 3,
+                right = 3,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+            -- Add support for hover colors and an index label
+            create_callback = function(self, c3, index, objects) --luacheck: no unused args
+                self:get_children_by_id('index_role')[1].markup = '<b> '..index..' </b>'
+            end,
+            update_callback = function(self, c3, index, objects) --luacheck: no unused args
+                self:get_children_by_id('index_role')[1].markup = '<b> '..index..' </b>'
+            end,
+        },
+        buttons = awful.util.taglist_buttons
+    }
+
+
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
@@ -331,12 +436,11 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            --spr,
             s.mytaglist,
             s.mypromptbox,
             spr,
         },
-        {
+        { -- central widgets
             layout = wibox.layout.align.horizontal,
             s.mytasklist, -- Middle widget
         },
@@ -345,54 +449,46 @@ function theme.at_screen_connect(s)
             
             dark(wibox.widget.systray()),
 
-            spr,
-            arrl_ld,
-            light(mykeyboardlayout),
+            arrl_ld, arrl_dl,
+            dark(mykeyboardlayout),
             
-            arrl_dl,
+            arrl_ld, arrl_dl,
             dark(mpdicon),
             dark(theme.mpd.widget),
             
-            arrl_ld,
-            light(volicon),
-            light(theme.volume.widget),
+            arrl_ld, arrl_dl,
+            dark(volicon),
+            dark(theme.volume.widget),
 
-            --dark(mailicon),
-            --dark(theme.mail.widget),
-
-            arrl_dl,
+            arrl_ld, arrl_dl,
             dark(memicon),
             dark(mem.widget),
 
-            arrl_ld,
-            light(cpuicon),
-            light(cpu.widget),
+            arrl_ld, arrl_dl,
+            dark(cpuicon),
+            dark(cpu.widget),
 
-            arrl_dl,
+            arrl_ld, arrl_dl,
             dark(tempicon),
             dark(temp.widget),
 
-            -- dark(fsicon),
-            -- dark(theme.fs.widget),
+            arrl_ld, arrl_dl,
+            dark(baticon),
+            dark(bat.widget),
 
-            arrl_ld,
-            light(baticon),
-            light(bat.widget),
-
-            arrl_dl,
+            arrl_ld, arrl_dl,
             dark(neticon),
             dark(net.widget),
 
-            arrl_ld,
-            light(theme.weather.icon),
-            light(theme.weather.widget),
+            arrl_ld, arrl_dl,
+            dark(theme.weather.icon),
+            dark(theme.weather.widget),
 
-            arrl_dl,
+            arrl_ld, arrl_dl,
             dark(clock),
 
-            spr,
-            arrl_ld,
-            light(s.mylayoutbox),
+            arrl_ld, arrl_dl,
+            dark(s.mylayoutbox),
         },
     }
 end

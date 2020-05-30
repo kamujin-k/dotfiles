@@ -2,16 +2,13 @@ awesome
 
  
  * identificar layout do teclado na inicializacao
+ * inverter a direção do scroll do touchpad
+ * atalho para mutar/desmutar o microfone
+ * preservar diretorio atual do terminal quando criar um novo
+ * https://github.com/xinhaoyuan/layout-machi
 
  * barra de status
- ** remover email
- ** clima
- ** agenda interativa
- ** google calendar
- ** widget de controle de brilho da tela
  ** widget de controle do touchpad
  ** widget de controle do bluetooth
 
 **********************************************
-
-

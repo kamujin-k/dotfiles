@@ -61,6 +61,8 @@ echo $password | sudo -S apt install build-essential\
                                           zsh\
 					                      telegram-desktop\
                                           copyq\
+                                          dmenu\
+                                          rofi\
                                           -y
 echo -e "${CYAN}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${NC}"
 
