@@ -45,46 +45,22 @@ local globalkeys = my_table.join(
     awful.key({ k.super }, "v", treetile.vertical),
     awful.key({ k.super }, "h", treetile.horizontal),
 
-
-
-    awful.key({k.super, k.ctrl}, "m",
-        actions.switch_monitor_display_mode,
+    awful.key({k.super, k.ctrl}, "m", actions.switch_monitor_display_mode,
         {description = "switch monitor display mode", group = "hotkeys"}),
 
-    -- Take a screenshot
-    -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    awful.key({ k.alt }, "p", 
-        function() os.execute("screenshot") end,
+    awful.key({ k.alt }, "p", actions.take_a_screenshot,
         {description = "take a screenshot", group = "hotkeys"}),
 
-    -- X screen locker
-    awful.key({ k.alt, k.ctrl }, "l",
-        actions.lock_screen,
+    awful.key({ k.alt, k.ctrl }, "l", actions.lock_screen,
         {description = "lock screen", group = "hotkeys"}),
 
     -- Hotkeys
-    awful.key({ k.super,           }, "s",      
-        hotkeys_popup.show_help,
+    awful.key({ k.super,}, "s", hotkeys_popup.show_help,
         {description = "show help", group="awesome"}),
-
-    -- Tag browsing
-    -- awful.key({ k.super,           }, k.arrow_left,   awful.tag.viewprev,
-    --           {description = "view previous", group = "tag"}),
-    -- awful.key({ k.super,           }, k.arrow_right,  awful.tag.viewnext,
-    --           {description = "view next", group = "tag"}),
-    awful.key({ k.super,           }, k.escape, awful.tag.history.restore,
-              {description = "go back", group = "tag"}),
-
-
-    -- Non-empty tag browsing
-    -- awful.key({ k.alt }, k.arrow_left, function () lain.util.tag_view_nonempty(-1) end,
-    --           {description = "view  previous nonempty", group = "tag"}),
-    -- awful.key({ k.alt }, k.arrow_right, function () lain.util.tag_view_nonempty(1) end,
-    --           {description = "view  previous nonempty", group = "tag"}),
 
 
     -- Default client focus
-    awful.key({ k.alt,           }, k.vim_down,
+    awful.key({ k.alt,}, k.vim_down,
         function ()
             awful.client.focus.byidx( 1)
         end,
@@ -104,21 +80,21 @@ local globalkeys = my_table.join(
         end,
         {description = "focus down", group = "client"}),
     
-        awful.key({ k.super }, k.vim_up,
+    awful.key({ k.super }, k.vim_up,
         function()
             awful.client.focus.global_bydirection("up")
             if client.focus then client.focus:raise() end
         end,
         {description = "focus up", group = "client"}),
     
-        awful.key({ k.super }, k.vim_left,
+    awful.key({ k.super }, k.vim_left,
         function()
             awful.client.focus.global_bydirection("left")
             if client.focus then client.focus:raise() end
         end,
         {description = "focus left", group = "client"}),
     
-        awful.key({ k.super }, k.vim_right,
+    awful.key({ k.super }, k.vim_right,
         function()
             awful.client.focus.global_bydirection("right")
             if client.focus then client.focus:raise() end
@@ -214,7 +190,7 @@ local globalkeys = my_table.join(
         end,
         {description = "toggle wibox", group = "awesome"}),
 
-    -- On the fly useless gaps change
+
     awful.key({ k.alt, k.ctrl }, "+",
         function () lain.util.useless_gaps_resize(1) end,
         {description = "increment useless gaps", group = "tag"}),
@@ -265,29 +241,31 @@ local globalkeys = my_table.join(
                     end
                 end,
               {description = "open a terminal", group = "launcher"}),
+
     awful.key({ k.super, k.ctrl }, "r", awesome.restart,
-              {description = "reload awesome", group = "awesome"}),
+        {description = "reload awesome", group = "awesome"}),
+
     awful.key({ k.super, k.shift   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+        {description = "quit awesome", group = "awesome"}),
 
     awful.key({ k.alt, k.shift   }, k.vim_right,     function () awful.tag.incmwfact( 0.02)          end,
-              {description = "increase master width factor", group = "layout"}),
+        {description = "increase master width factor", group = "layout"}),
+
     awful.key({ k.alt, k.shift   }, k.vim_left,     function () awful.tag.incmwfact(-0.02)          end,
-              {description = "decrease master width factor", group = "layout"}),
+        {description = "decrease master width factor", group = "layout"}),
+
     awful.key({ k.super, k.shift   }, k.vim_left,     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
+        {description = "increase the number of master clients", group = "layout"}),
+
     awful.key({ k.super, k.shift   }, k.vim_right,     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
+        {description = "decrease the number of master clients", group = "layout"}),
+
     awful.key({ k.super, k.ctrl }, k.vim_left,     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = "increase the number of columns", group = "layout"}),
+        {description = "increase the number of columns", group = "layout"}),
+
     awful.key({ k.super, k.ctrl }, k.vim_right,     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
+        {description = "decrease the number of columns", group = "layout"}),
 
-
---    awful.key({ k.super,           }, k.space, function () awful.layout.inc( 1)                end,
---              {description = "select next", group = "layout"}),
---    awful.key({ k.super, k.shift   }, k.space, function () awful.layout.inc(-1)                end,
---              {description = "select previous", group = "layout"}),
 
     awful.key({ k.super, k.ctrl }, "n",
               function ()
@@ -300,21 +278,6 @@ local globalkeys = my_table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
-    -- Dropdown application
-    awful.key({ k.super, }, "z",
-        function () awful.screen.focused().quake:toggle() end,
-              {description = "dropdown application", group = "launcher"}),
-
-    -- Widgets popups
-    awful.key({ k.alt, }, "c",
-        function () if beautiful.cal then beautiful.cal.show(7) end end,
-              {description = "show calendar", group = "widgets"}),
-    awful.key({ k.alt, }, "h",
-        function () if beautiful.fs then beautiful.fs.show(7) end end,
-              {description = "show filesystem", group = "widgets"}),
-    awful.key({ k.alt, }, "w",
-        function () if beautiful.weather then beautiful.weather.show(7) end end,
-              {description = "show weather", group = "widgets"}),
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessUp",
@@ -363,24 +326,28 @@ local globalkeys = my_table.join(
             beautiful.mpd.update()
         end,
         {description = "mpc toggle", group = "widgets"}),
+
     awful.key({ }, "XF86AudioStop",
         function ()
             os.execute("mpc stop")
             beautiful.mpd.update()
         end,
         {description = "mpc stop", group = "widgets"}),
+
     awful.key({ }, "XF86AudioPrev",
         function ()
             os.execute("mpc prev")
             beautiful.mpd.update()
         end,
         {description = "mpc prev", group = "widgets"}),
+
     awful.key({ }, "XF86AudioNext",
         function ()
             os.execute("mpc next")
             beautiful.mpd.update()
         end,
         {description = "mpc next", group = "widgets"}),
+
     awful.key({ k.alt }, "0",
         function ()
             local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
@@ -395,19 +362,25 @@ local globalkeys = my_table.join(
         end,
         {description = "mpc on/off", group = "widgets"}),
 
+        
     -- Copy primary to clipboard (terminals to gtk)
     awful.key({ k.super }, "c",
         function () awful.spawn.with_shell("xsel | xsel -i -b") end,
               {description = "copy terminal to gtk", group = "hotkeys"}),
+
+              
     -- Copy clipboard to primary (gtk to terminals)
     awful.key({ k.super }, "v",
         function () awful.spawn.with_shell("xsel -b | xsel") end,
               {description = "copy gtk to terminal", group = "hotkeys"}),
 
+
     -- User programs
     awful.key({ k.super }, "q",
         function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
+
+              
     awful.key({ k.super }, "a",
         function () awful.spawn(gui_editor) end,
               {description = "run gui editor", group = "launcher"}),
@@ -459,23 +432,30 @@ local globalkeys = my_table.join(
     local clientkeys = my_table.join(
         awful.key({ k.alt, k.shift   }, "m",      lain.util.magnify_client,
                 {description = "magnify client", group = "client"}),
+
         awful.key({ k.super,           }, "f",
             function (c)
                 c.fullscreen = not c.fullscreen
                 c:raise()
             end,
             {description = "toggle fullscreen", group = "client"}),
+
         awful.key({ k.alt   }, "F4",      function (c) c:kill()                         end,
                 {description = "close", group = "client"}),
+
         awful.key({ k.super, k.ctrl }, k.space,  awful.client.floating.toggle                     ,
                 {description = "toggle floating", group = "client"}),
+
         awful.key({ k.super, k.ctrl }, k.enter,
         function (c) c:swap(awful.client.getmaster()) end,
                 {description = "move to master", group = "client"}),
+
         awful.key({ k.super,           }, "o",      function (c) c:move_to_screen()               end,
                 {description = "move to screen", group = "client"}),
+
         awful.key({ k.super, k.shift}, "t",      function (c) c.ontop = not c.ontop            end,
                 {description = "toggle keep on top", group = "client"}),
+
         awful.key({ k.super,           }, "n",
             function (c)
                 -- The client currently has the input focus, so it cannot be
@@ -483,12 +463,14 @@ local globalkeys = my_table.join(
                 c.minimized = true
             end ,
             {description = "minimize", group = "client"}),
+
         awful.key({ k.super,           }, "m",
             function (c)
                 c.maximized = not c.maximized
                 c:raise()
             end ,
             {description = "maximize", group = "client"}),
+            
         awful.key({ k.super }, "t", awful.titlebar.toggle,
         {description = "toggle titlebar", group = "client"})
 
@@ -518,6 +500,7 @@ local globalkeys = my_table.join(
                             end
                     end,
                     descr_view),
+
             -- Toggle tag display.
             awful.key({ k.super, k.ctrl }, "#" .. i + 9,
                     function ()
@@ -528,6 +511,7 @@ local globalkeys = my_table.join(
                         end
                     end,
                     descr_toggle),
+
             -- Move client to tag.
             awful.key({ k.super, k.shift }, "#" .. i + 9,
                     function ()
@@ -539,6 +523,7 @@ local globalkeys = my_table.join(
                         end
                     end,
                     descr_move),
+                    
             -- Toggle tag on focused client.
             awful.key({ k.super, k.ctrl, k.shift }, "#" .. i + 9,
                     function ()

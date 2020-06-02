@@ -34,7 +34,7 @@ function actions.switch_monitor_display_mode(args)
 end
 
 function actions.take_a_screenshot(args)
-
+    os.execute("screenshot")
 end
 
 function actions.lock_screen(args)
