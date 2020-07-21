@@ -25,6 +25,7 @@
     ~/.oh-my-zsh/custom/themes/sanremo.zsh-theme: files/sanremo.zsh-theme
     ~/.oh-my-zsh/custom/themes/zooper.zsh-theme: files/zooper.zsh-theme
     ~/.config/kitty/kitty.conf: files/kitty.conf
+    ~/.config/kitty/nord.conf: files/nord.conf
     ~/.config/ranger/rc.conf: files/rc.conf
     ~/.config/ranger/scope.sh: files/scope.sh
     ~/scripts: files/scripts

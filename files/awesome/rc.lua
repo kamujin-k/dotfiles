@@ -30,7 +30,7 @@ local treetile      = require("treetile")
 local treebindings  = require("treetile.bindings")
 local bindings      = require("bindings")
 local k             = require("keys")
-
+local actions       = require("actions")
 
 -- treebindings.init()
 local keys, clientkeys = bindings.init()
@@ -295,8 +295,8 @@ awful.rules.rules = {
      }
     },
 
-    { rule = { class = "kitty" },
-      properties = { opacity = 0.85 } },
+--    { rule = { class = "kitty" },
+--      properties = { opacity = 0.95 } },
 
     -- Titlebars
     { rule_any = { type = { "dialog", "normal" } },
@@ -377,7 +377,13 @@ end)
 
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("unfocus", 
+    function(c)
+        c.border_color = beautiful.border_normal 
+       -- if actions.magnified == c then
+       --     actions.magnify_client(c)
+       -- end
+    end)
 
 -- possible workaround for tag preservation when switching back to default screen:
 -- https://github.com/lcpz/awesome-copycats/issues/251

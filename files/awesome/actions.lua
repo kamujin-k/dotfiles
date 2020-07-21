@@ -29,6 +29,45 @@ local k             = require("keys").init()
 
 local actions = {}
 
+actions.magnified = false
+
+
+function client_focus_decorator(decorable, params) 
+    
+    decorable(params)
+
+    if client.focus then
+        client.focus:raise()
+    end
+end
+
+
+
+function actions.focus_next_by_index(params)
+    client_focus_decorator(awful.client.focus.byidx, 1)
+end
+
+function actions.focus_previous_by_index(params)
+    client_focus_decorator(awful.client.focus.byidx, -1)
+end
+
+function actions.focus_down(params)
+     client_focus_decorator(awful.client.focus.global_bydirection, "down")
+end
+
+function actions.focus_up(params)
+      client_focus_decorator(awful.client.focus.global_bydirection, "up")
+end
+
+function actions.focus_left(params)
+      client_focus_decorator(awful.client.focus.global_bydirection, "left")
+end
+
+function actions.focus_right(params)
+      client_focus_decorator(awful.client.focus.global_bydirection, "right")
+end
+
+
 function actions.switch_monitor_display_mode(args)
     xrandr.xrandr()
 end
@@ -140,36 +179,6 @@ function actions.lua_execute_prompt(args)
 end
 
 
-function actions.focus_next_by_index(params)
-
-end
-function actions.focus_previous_by_index(params)
-
-end
-function actions.focus_down(params)
-
-end
-function actions.focus_up(params)
-
-end
-function actions.focus_left(params)
-
-end
-function actions.focus_right(params)
-
-end
-function actions.focus_down(params)
-
-end
-function actions.focus_up(params)
-
-end
-function actions.focus_left(params)
-
-end
-function actions.focus_right(params)
-
-end
 function actions.swap_with_next_client_by_index(params)
 
 end
@@ -188,7 +197,14 @@ end
 function actions.restore_minimized(params)
 
 end
-function actions.magnify_client(params)
+function actions.magnify_client(c)
+    if actions.magnified == c then
+        actions.magnified = nil
+    else
+        actions.magnified = c
+    end
+
+    lain.util.magnify_client(c)
 
 end
 function actions.toggle_fullscreen(params)

@@ -90,11 +90,12 @@ else
             }
         }' | fzf --height 40% --reverse --header-lines=6 | awk -v software="$1" \
         '
-            NF==1 {
+
+            NF==2 {
                 print "install " software " " $1
             }
 
-            NF>1 {
+            NF>2 {
                 print "use " software " " $1
             }
         '

@@ -42,8 +42,15 @@ function bindings.init(args)
 -- {{{ Key bindings
 local globalkeys = my_table.join(
 
-    awful.key({ k.super }, "v", treetile.vertical),
-    awful.key({ k.super }, "h", treetile.horizontal),
+
+
+    awful.key({ k.super,},k.tab,   awful.tag.viewnext,
+              {description = "view previous tag", group = "tag"}),
+    awful.key({ k.super,k.shift},k.tab,  awful.tag.viewprev,
+              {description = "view next tag", group = "tag"}),
+
+--    awful.key({ k.super }, "v", treetile.vertical),
+--    awful.key({ k.super }, "h", treetile.horizontal),
 
     awful.key({k.super, k.ctrl}, "m", actions.switch_monitor_display_mode,
         {description = "switch monitor display mode", group = "hotkeys"}),
@@ -58,79 +65,7 @@ local globalkeys = my_table.join(
     awful.key({ k.super,}, "s", hotkeys_popup.show_help,
         {description = "show help", group="awesome"}),
 
-
-    -- Default client focus
-    awful.key({ k.alt,}, k.vim_down,
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
-        {description = "focus next by index", group = "client"}),
-
-    awful.key({ k.alt,           }, k.vim_up,
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
-        {description = "focus previous by index", group = "client"}),
-
-    -- By (vim) direction client focus
-    awful.key({ k.super }, k.vim_down,
-        function()
-            awful.client.focus.global_bydirection("down")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus down", group = "client"}),
-    
-    awful.key({ k.super }, k.vim_up,
-        function()
-            awful.client.focus.global_bydirection("up")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus up", group = "client"}),
-    
-    awful.key({ k.super }, k.vim_left,
-        function()
-            awful.client.focus.global_bydirection("left")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus left", group = "client"}),
-    
-    awful.key({ k.super }, k.vim_right,
-        function()
-            awful.client.focus.global_bydirection("right")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus right", group = "client"}),
-
-    -- By (arrow) direction client focus
-    awful.key({ k.super }, k.arrow_down,
-        function()
-            awful.client.focus.global_bydirection("down")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus down", group = "client"}),
-    
-    awful.key({ k.super }, k.arrow_up,
-        function()
-            awful.client.focus.global_bydirection("up")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus up", group = "client"}),
-    
-    awful.key({ k.super }, k.arrow_left,
-        function()
-            awful.client.focus.global_bydirection("left")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus left", group = "client"}),
-    awful.key({ k.super }, k.arrow_right,
-        function()
-            awful.client.focus.global_bydirection("right")
-            if client.focus then client.focus:raise() end
-        end,
-        {description = "focus right", group = "client"}),
-
-        
-    awful.key({ k.super,           }, "w",
+    awful.key({ k.super,}, "w",
         function () awful.util.mymainmenu:show() end,
         {description = "show main menu", group = "awesome"}),
 
@@ -430,7 +365,48 @@ local globalkeys = my_table.join(
     )
 
     local clientkeys = my_table.join(
-        awful.key({ k.alt, k.shift   }, "m",      lain.util.magnify_client,
+
+
+
+
+        -- Default client focus
+        awful.key({ k.alt,}, k.vim_down, actions.focus_next_by_index,
+            {description = "focus next by index", group = "client"}),
+
+
+        awful.key({ k.alt,}, k.vim_up, actions.focus_previous_by_index
+            {description = "focus previous by index", group = "client"}),
+
+        -- By (vim) direction client focus
+        awful.key({ k.super }, k.vim_down, actions.focus_down,
+            {description = "focus down", group = "client"}),
+        
+        awful.key({ k.super }, k.vim_up, actions.focus_up,
+            {description = "focus up", group = "client"}),
+        
+        awful.key({ k.super }, k.vim_left, actions.focus_left,
+            {description = "focus left", group = "client"}),
+
+        awful.key({ k.super }, k.vim_right, actions.focus_right,
+            {description = "focus right", group = "client"}),
+
+        -- By (arrow) direction client focus
+        awful.key({ k.super }, k.arrow_down, actions.focus_down,
+            {description = "focus down", group = "client"}),
+        
+        awful.key({ k.super }, k.arrow_up, actions.focus_up,
+            {description = "focus up", group = "client"}),
+        
+        awful.key({ k.super }, k.arrow_left, actions.focus_left,
+            {description = "focus left", group = "client"}),
+
+        awful.key({ k.super }, k.arrow_right, actions.focus_right,
+            {description = "focus right", group = "client"}),
+
+
+
+
+        awful.key({ k.alt, k.shift   }, "m", actions.magnify_client,
                 {description = "magnify client", group = "client"}),
 
         awful.key({ k.super,           }, "f",
@@ -440,7 +416,10 @@ local globalkeys = my_table.join(
             end,
             {description = "toggle fullscreen", group = "client"}),
 
-        awful.key({ k.alt   }, "F4",      function (c) c:kill()                         end,
+        awful.key({ k.alt   }, "F4",      function (c) c:kill() end,
+                {description = "close", group = "client"}),
+
+        awful.key({ k.super   }, "F4",      function (c) c:kill() end,
                 {description = "close", group = "client"}),
 
         awful.key({ k.super, k.ctrl }, k.space,  awful.client.floating.toggle                     ,
