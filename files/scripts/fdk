@@ -15,7 +15,7 @@ then
         }  
         
         NF>1 && header==1 {
-            if ($1 ~ /^[[:space:]]*$/ ) 
+            if ($1 ~ /^ *$/ ) 
                 $1 = previous;
             else 
                 previous = $1;
@@ -24,7 +24,7 @@ then
         }
         ' | fzf --height 40% --reverse --header-lines=5 | awk -F\| \
         '{
-            if ($5 ~ /^[[:space:]]*$/ ) 
+            if ($5 ~ /^ *$/ ) 
                 command = "install";
             else 
                 command = "use";
@@ -38,12 +38,12 @@ else
         sdk list "$1" | awk '
         
         BEGIN {
-            FS="[[:space:]][[:space:]]+"
+            FS="  +"
             current_index=0
             separator=0
         }
 
-        $0 ~ /^[[:space:]]*$/ {
+        $0 ~ /^ *$/ {
             next
         }
         
@@ -64,7 +64,7 @@ else
 
         separator >= 2 && separator < 3 {
             for (i=1; i<= NF; i++) {
-                if(!($i ~ "^[[:space:]]*$" || $i == "")){
+                if(!($i ~ "^ *$" || $i == "")){
                     len=split($i, segments, " ")                
 
                     version=""
